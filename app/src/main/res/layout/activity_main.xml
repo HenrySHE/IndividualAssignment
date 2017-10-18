@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="Let's Solve Math Problems !!"
         android:gravity="center"
-        android:textSize="25dp"
+        android:textSize="24dp"
         android:shadowColor="#A9A9A9"
         android:shadowDx="15.0"
         android:shadowDy="15.0"
