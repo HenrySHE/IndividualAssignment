@@ -7,11 +7,29 @@
     android:layout_height="match_parent"
     tools:context="hk.hku.henryshe.individualassignment.MainActivity">
 
+    <TextView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Let's Solve Math Problems !!"
+        android:gravity="center"
+        android:textSize="25dp"
+        android:shadowColor="#A9A9A9"
+        android:shadowDx="15.0"
+        android:shadowDy="15.0"
+        android:shadowRadius="3.0"
+        android:textColor="#000000"
+        android:layout_marginRight="16dp"
+        app:layout_constraintRight_toRightOf="parent"
+        android:layout_marginLeft="16dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="24dp" />
+
     <EditText
         android:id="@+id/editText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="367dp"
         android:ems="10"
         android:hint="@string/edit_message"
         android:inputType="textPersonName"
@@ -33,4 +51,5 @@
         app:layout_constraintBaseline_toBaselineOf="@+id/editText"
         app:layout_constraintLeft_toRightOf="@+id/editText"
         app:layout_constraintRight_toRightOf="parent" />
+
 </android.support.constraint.ConstraintLayout>
