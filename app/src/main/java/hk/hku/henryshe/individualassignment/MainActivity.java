@@ -4,54 +4,40 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
-    private TextView problemText;
+    private TextView textview_myInfo;
+    private Button startBtn;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-//        Test the showing problem(Question)
-        problemText = (TextView)findViewById(R.id.problemQuestion);
-        problemText.setText(setQuestion(1,1,1));
-        setQuestion(2,1,1);
-    }
+        textview_myInfo = (TextView)this.findViewById(R.id.myinfo);
+        //Setting the software name
+        setTitle("Problem Solving APP");
+        String text_info = "Haoyu SHE\n\n";
+        text_info += "佘昊宇\n\n";
+        text_info += "UID:3035455149\n\n";
+        text_info += "E-mail:henryshe@hku.hk\n\n";
+        textview_myInfo.setText(text_info);
 
-    public int getRamVal(){
-        return 0;
-    }
-
-    public String setQuestion(int type,int a,int b){
-        if(type == 1||type == 2 || type ==3 || type == 4 || type ==5){
-//            problemText = (TextView)findViewById(R.id.problemQuestion);
-//            problemText.setText("This is Linear Question:");
-        }
-        if(type == 6||type == 7 || type ==8 || type == 9 || type ==10){
-
-        }
-        return "Testing";
-    }
-
-    public void sendMessage(View view){
-        //DisplayMessageActivity error.
-        //Create a intent, which passing the class to the sub class
-        Intent intent = new Intent(this, DisplayMessageActivity.class);
-        EditText editText = (EditText) findViewById(R.id.editText);
-        String message = editText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
-        //Start the "intent" activity
-        startActivity(intent);
-
+        //Setting the jumping action
+        startBtn = (Button) findViewById(R.id.startButton);
+        startBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this,MainQuestionActivity.class);
+                startActivity(intent) ;
+            }
+        });
     }
 
 
-    public void showMessage(){
-
-    }
 
 
 }
