@@ -1,5 +1,5 @@
 <resources>
     <string name="app_name">Math Problems App</string>
-    <string name="edit_message">Enter a message</string>
+    <string name="edit_message">Enter answer</string>
     <string name="button_send">Submit Answer</string>
 </resources>

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import java.util.Random;
 
 public class MainQuestionActivity extends AppCompatActivity {
     public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
@@ -15,27 +16,52 @@ public class MainQuestionActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_question);
+        int a,b,c;
 
+        for(int i=0;i<10;i++){
+            if(i<5){
+                a = getRamVal();
+                b = getRamVal();
+                setQuestion((i+1),a,b);
 
-//        Test the showing problem(Question)
-        problemText = (TextView)findViewById(R.id.problemQuestion);
-        problemText.setText(setQuestion(1,1,1));
-        setQuestion(2,1,1);
+            }else{
+                a = getRamVal();
+                b = getRamVal();
+                c = getRamVal();
+                setQuestion((i+1),a,b,c);
+            }
+        }
+        setQuestion(1,getRamVal(),getRamVal());
+
+//        problemText = (TextView)findViewById(R.id.problemQuestion);
+//        problemText.setText(setQuestion(1,1,1));
     }
 
+//    This method is used to generate random values
     public int getRamVal(){
-        return 0;
+        Random myRam;
+        myRam = new Random();
+        int ramNum = -99 + myRam.nextInt(199);
+        return ramNum;
     }
 
-    public String setQuestion(int type,int a,int b){
-        if(type == 1||type == 2 || type ==3 || type == 4 || type ==5){
-//            problemText = (TextView)findViewById(R.id.problemQuestion);
-//            problemText.setText("This is Linear Question:");
+    public void setQuestion(int type,int a,int b){
+        problemText = (TextView)findViewById(R.id.problemType);
+        problemText.setText("Linear equation No. "+ type +" :");
+        if(b<0){
+            problemText = (TextView)findViewById(R.id.problemQuestion);
+            problemText.setText(a + "x - "+ (-b) +" = 0, what is x?");
+        }else{
+            problemText = (TextView)findViewById(R.id.problemQuestion);
+            problemText.setText(a + "x + " +b +" = 0, what is x?");
         }
-        if(type == 6||type == 7 || type ==8 || type == 9 || type ==10){
+    }
+    public void setQuestion(int type,int a,int b,int c){
+        problemText = (TextView)findViewById(R.id.problemType);
+        problemText.setText("Quadratic equation No."+ type +" :");
 
-        }
-        return "Testing";
+        problemText = (TextView)findViewById(R.id.problemQuestion);
+        problemText.setText("a:"+a+" b:"+b+" c:"+c);
     }
 
     public void sendMessage(View view){
