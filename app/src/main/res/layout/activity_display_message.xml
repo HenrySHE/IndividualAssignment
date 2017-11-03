@@ -28,8 +28,8 @@
 
     <TextView
         android:id="@+id/at"
-        android:layout_width="213dp"
-        android:layout_height="29dp"
+        android:layout_width="215dp"
+        android:layout_height="64dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="312dp"

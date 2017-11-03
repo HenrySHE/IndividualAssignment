@@ -15,6 +15,9 @@ public class DisplayMessageActivity extends AppCompatActivity {
     private TextView incomplete_tv;
     private TextView du_tv;
     private String right_string,wrong_string,giveUp_string,incomplete_string,du_string;
+    private double used_time,right_num,incomplete_num,wrong_num;
+    private double do_num,giveUp_num,avg_time;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,7 +47,20 @@ public class DisplayMessageActivity extends AppCompatActivity {
         incomplete_tv = (TextView) findViewById(R.id.incomplete);
         incomplete_tv.setText("Incomplete:\t\t"+ incomplete_string);
         du_tv = (TextView) findViewById(R.id.at);
-        du_tv.setText("Time used:\t"+du_string);
+//        du_tv.setText("Time used:\t"+du_string);
+        used_time = Double.parseDouble(du_string);
+//        right_num = Double.parseDouble(right_string);
+//        incomplete_num = Double.parseDouble(incomplete_string);
+//        wrong_num = Double.parseDouble(wrong_string);
+        giveUp_num = Double.parseDouble(giveUp_string);
+        do_num = 10 - giveUp_num;
+        if(do_num != 0){
+            avg_time = (used_time/do_num)/1000;
+            du_tv.setText("Average Time:"+String.valueOf(avg_time)+"\n(second/question)");
+        }else{
+            du_tv.setText("Time used: 0 sec.");
+        }
+
 
         //Toast.makeText(DisplayMessageActivity.this,right_string,Toast.LENGTH_SHORT).show();
 
