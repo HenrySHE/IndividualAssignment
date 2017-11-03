@@ -284,8 +284,10 @@ public class MainQuestionActivity extends AppCompatActivity {
                         //If user leave one blank -> treat as incomplete
                         if(testEmpty.matches("") || testEmpty2.matches("")){
                             Toast.makeText(MainQuestionActivity.this,"Your answer is incomplete",Toast.LENGTH_SHORT).show();
+                            answerText.setTextColor(Color.parseColor("#FF0000"));
+                            DecimalFormat df = new DecimalFormat("####0.00");
+                            answerText.setText("Incomplete answer! The correct answer is: " + df.format(solution1)+ " and "+ df.format(solution2));
                             inComplete = inComplete + 1;
-                            btn.setClickable(false);
 
                         }
                         else{
