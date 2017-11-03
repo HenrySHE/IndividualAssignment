@@ -1,5 +1,6 @@
 package hk.hku.henryshe.individualassignment;
-
+    //The project is created by Haoyu SHE (Henry) in 2017
+    //Finished updating in 2017.11.3
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

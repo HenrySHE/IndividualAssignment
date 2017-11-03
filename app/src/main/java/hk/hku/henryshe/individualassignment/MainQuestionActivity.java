@@ -1,5 +1,6 @@
 package hk.hku.henryshe.individualassignment;
-
+//The project is created by Haoyu SHE (Henry) in 2017
+//Finished updating in 2017.11.3
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -9,8 +10,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-import org.w3c.dom.Text;
-import java.math.BigDecimal;
 import java.text.DecimalFormat;
 import java.util.Random;
 

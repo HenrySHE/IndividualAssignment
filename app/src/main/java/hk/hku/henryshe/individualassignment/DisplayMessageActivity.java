@@ -8,7 +8,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class DisplayMessageActivity extends AppCompatActivity {
-
+    //The project is created by Haoyu SHE (Henry) in 2017
+    //Finished updating in 2017.11.3
     private TextView right_tv;
     private TextView wrong_tv;
     private TextView giveUp_tv;
