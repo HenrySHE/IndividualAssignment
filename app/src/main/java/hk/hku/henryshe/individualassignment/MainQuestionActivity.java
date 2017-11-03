@@ -26,9 +26,10 @@ public class MainQuestionActivity extends AppCompatActivity {
     private double solution;
     private double solution1,solution2;
     private int rightCount = 0;
-    private int giveUpCount = 0;
+    private int wrongCount = 0;
     private int inComplete = 0;
     private long duration = 0;
+    private int giveUpCount = 0;
     private long timeA;
     private long timeB;
     //
@@ -77,6 +78,24 @@ public class MainQuestionActivity extends AppCompatActivity {
                     btn = (Button)findViewById(R.id.button) ;
                     btn.setVisibility(View.GONE);
                     nextBtn.setText("Finish!");
+                    giveUpCount = 10 - rightCount - wrongCount - inComplete;
+                    // Right/Worng/Incomplete/GiveUp
+                    // Duration(Time Used)
+                    Intent intent = new Intent(MainQuestionActivity.this,DisplayMessageActivity.class);
+//                    intent.putExtra("right",rightCount);
+//                    intent.putExtra("wrong",wrongCount);
+//                    intent.putExtra("giveUp",giveUpCount);
+//                    intent.putExtra("incomplete",inComplete);
+//                    intent.putExtra("du",duration);
+                    Bundle extras = new Bundle();
+                    extras.putString("EXTRA_RIGHT",String.valueOf(rightCount));
+                    extras.putString("EXTRA_WRONG",String.valueOf(wrongCount));
+                    extras.putString("EXTRA_GIVEUP",String.valueOf(giveUpCount));
+                    extras.putString("EXTRA_INCOMPLETE",String.valueOf(inComplete));
+                    extras.putString("EXTRA_DU",String.valueOf(duration));
+                    //This should be putExtra(s)!!
+                    intent.putExtras(extras);
+                    startActivity(intent);
                 }
 
             }
@@ -100,7 +119,6 @@ public class MainQuestionActivity extends AppCompatActivity {
                     String testEmpty = userAnswer1.getText().toString();
                     if(testEmpty.matches("")){
                         Toast.makeText(MainQuestionActivity.this,"You give up this question",Toast.LENGTH_SHORT).show();
-                        giveUpCount = giveUpCount + 1;
                         btn.setClickable(false);
 //                        btn.setBackgroundColor(Color.GRAY);
                     }
@@ -126,6 +144,7 @@ public class MainQuestionActivity extends AppCompatActivity {
                                     DecimalFormat df = new DecimalFormat("####0.00");
 //                                    answerText.setText("Wrong answer! The correct answer is: " + Double.toString(solution));
                                     answerText.setText("Wrong answer! The correct answer is: " + df.format(solution));
+                                    wrongCount = wrongCount + 1;
                                 }
                                 btn.setClickable(false);
 //                        btn.setBackgroundColor(Color.CYAN);
@@ -147,9 +166,13 @@ public class MainQuestionActivity extends AppCompatActivity {
                                 DecimalFormat df = new DecimalFormat("####0.00");
 //                                    answerText.setText("Wrong answer! The correct answer is: " + Double.toString(solution));
                                 answerText.setText("Wrong answer! The correct answer is: " + df.format(solution));
+                                wrongCount = wrongCount + 1;
                             }
                             btn.setClickable(false);
                         }
+                        timeB = System.currentTimeMillis();
+                        setTime(timeA,timeB);
+//                        Toast.makeText(MainQuestionActivity.this,"Haha!" + duration,Toast.LENGTH_SHORT).show();
                     }
 
                 }
@@ -178,7 +201,6 @@ public class MainQuestionActivity extends AppCompatActivity {
                         if(testEmpty.matches("")){
                             Toast.makeText(MainQuestionActivity.this,"You give up this question",Toast.LENGTH_SHORT).show();
                             btn.setClickable(false);
-                            giveUpCount = giveUpCount + 1;
 //                        btn.setBackgroundColor(Color.GRAY);
                         }
                         else{
@@ -202,7 +224,8 @@ public class MainQuestionActivity extends AppCompatActivity {
 //                                    answerText.setText("Wrong answer!"+userAnswer1.getText().toString()+ "/" + Double.toString(solution));
                                         DecimalFormat df = new DecimalFormat("####0.00");
 //                                    answerText.setText("Wrong answer! The correct answer is: " + Double.toString(solution));
-                                        answerText.setText("Wrong answer! The correct answer is: " + df.format(solution1));
+                                        answerText.setText("Wrong answer! The correct answer is: " + df.format(solution1)+ " and "+ df.format(solution2));
+                                        wrongCount = wrongCount + 1;
                                     }
                                     btn.setClickable(false);
 //                        btn.setBackgroundColor(Color.CYAN);
@@ -223,12 +246,15 @@ public class MainQuestionActivity extends AppCompatActivity {
 //                                    answerText.setText("Wrong answer!"+userAnswer1.getText().toString()+ "/" + Double.toString(solution));
                                     DecimalFormat df = new DecimalFormat("####0.00");
 //                                    answerText.setText("Wrong answer! The correct answer is: " + Double.toString(solution));
-                                    answerText.setText("Wrong answer! The correct answer is: " + df.format(solution));
+                                    answerText.setText("Wrong answer! The correct answer is: " + df.format(solution1)+ " and "+ df.format(solution2));
+                                    wrongCount = wrongCount + 1;
                                 }
                                 btn.setClickable(false);
                             }
                             timeB = System.currentTimeMillis();
                             setTime(timeA,timeB);
+//                            Toast.makeText(MainQuestionActivity.this,"Time Dur:"+duration,Toast.LENGTH_LONG).show();
+
                         }
 
                     }
@@ -254,7 +280,6 @@ public class MainQuestionActivity extends AppCompatActivity {
                         if(testEmpty.matches("") && testEmpty2.matches("")){
                             Toast.makeText(MainQuestionActivity.this,"You give up this question",Toast.LENGTH_SHORT).show();
                             btn.setClickable(false);
-                            giveUpCount = giveUpCount + 1;
                         }
                         //If user leave one blank -> treat as incomplete
                         if(testEmpty.matches("") || testEmpty2.matches("")){
@@ -283,7 +308,7 @@ public class MainQuestionActivity extends AppCompatActivity {
                                     }else{
                                         answerText.setTextColor(Color.parseColor("#FF0000"));
                                         DecimalFormat df = new DecimalFormat("####0.00");
-                                        answerText.setText("Wrong answer! The correct answer is: " + df.format(solution));
+                                        answerText.setText("Wrong answer! The correct answer is: " + df.format(solution1)+ " and "+ df.format(solution2));
                                     }
                                     btn.setClickable(false);
                                 }
@@ -304,16 +329,11 @@ public class MainQuestionActivity extends AppCompatActivity {
                             }
                             timeB = System.currentTimeMillis();
                             setTime(timeA,timeB);
+//                            Toast.makeText(MainQuestionActivity.this,"Time Dur:"+duration,Toast.LENGTH_LONG).show();
                         }
 
                     }
                 });
-
-
-
-
-
-
             }
         }
     }
@@ -374,8 +394,6 @@ public class MainQuestionActivity extends AppCompatActivity {
                 problemText.setText(a + "x^2 + "+ (b) +"x + "+ (c) + " = 0, what is x?");
             }
         }
-//        problemText = (TextView)findViewById(R.id.problemQuestion);
-//        problemText.setText("a:"+a+" b:"+b+" c:"+c);
     }
 
     public boolean notHasRoot(int a,int b,int c){
@@ -395,23 +413,5 @@ public class MainQuestionActivity extends AppCompatActivity {
 
     public void setTime(long timeA,long timeB){
         duration = duration + (timeB - timeA);
-    }
-
-
-//    public void sendMessage(View view){
-//        //DisplayMessageActivity error.
-//        //Create a intent, which passing the class to the sub class
-//        Intent intent = new Intent(this, DisplayMessageActivity.class);
-//        EditText editText = (EditText) findViewById(R.id.editText);
-//        String message = editText.getText().toString();
-//        intent.putExtra(EXTRA_MESSAGE, message);
-//        //Start the "intent" activity
-//        startActivity(intent);
-//
-//    }
-
-
-    public void showMessage(){
-
     }
 }
