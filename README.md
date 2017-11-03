@@ -21,6 +21,10 @@ Showing the correct answer if user input wrong/incomplete answer.
 
 
 Log:
+
 2017.11.3 - Project has been finished.
+
 2017.1025 - Project has been updated.
+
 2017.1016 - Project was been created.
+
